@@ -997,30 +997,34 @@ target.scrollIntoView({behavior: reduced?'auto':'smooth', block:'start'});
 });
 };
 observeReveals();
-/* ============ RESPIRACIÓN 4-7-8 (con voz) ============ */
+/* ============ RESPIRACION 4-7-8 (voz humana de marca) ============ */
 var breathOn = false, breathTimer = null, countTimer = null;
 var voiceOn = true;
 var phases = [
-{label:'Inhala', say:'Inhala por la nariz', secs:4, scale:1},
-{label:'Retén', say:'Retén el aire', secs:7, scale:1},
-{label:'Exhala', say:'Exhala despacio', secs:8, scale:.72}
+{label:'Inhala', key:'inhala', secs:4, scale:1},
+{label:'Retén', key:'reten', secs:7, scale:1},
+{label:'Exhala', key:'exhala', secs:8, scale:.72}
 ];
-function speak(txt){
-if(!voiceOn || !('speechSynthesis' in window)) return;
-try{
-speechSynthesis.cancel();
-var u = new SpeechSynthesisUtterance(txt);
-u.lang = 'es-ES'; u.rate = .85; u.pitch = 1; u.volume = .9;
-var vs = speechSynthesis.getVoices().filter(function(v){ return v.lang && v.lang.indexOf('es')===0; });
-if(vs.length) u.voice = vs[0];
-speechSynthesis.speak(u);
-}catch(e){}
+var vaudio = {};
+['bienvenida','inhala','reten','exhala'].forEach(function(k){
+var a = new Audio('assets/audio/'+k+'.m4a');
+a.preload = 'auto'; vaudio[k] = a;
+});
+function stopVoice(){
+for(var k in vaudio){ try{ vaudio[k].pause(); vaudio[k].currentTime = 0; }catch(e){} }
 }
-if('speechSynthesis' in window){ speechSynthesis.getVoices(); } // precarga voces (Safari/Chrome)
+function speakKey(k, cb){
+if(!voiceOn || !vaudio[k]){ if(cb) cb(); return; }
+stopVoice();
+var a = vaudio[k], done = false;
+function fin(){ if(done) return; done = true; a.removeEventListener('ended', fin); if(cb) cb(); }
+if(cb){ a.addEventListener('ended', fin); setTimeout(fin, 9000); }
+a.play().catch(fin);
+}
 window.toggleVoice = function(){
 voiceOn = !voiceOn;
-document.getElementById('voiceBtn').textContent = voiceOn ? '🔊 Voz activada' : '🔇 Voz desactivada';
-if(!voiceOn && 'speechSynthesis' in window) speechSynthesis.cancel();
+document.getElementById('voiceBtn').textContent = voiceOn ? '\ud83d\udd0a Voz activada' : '\ud83d\udd07 Voz desactivada';
+if(!voiceOn) stopVoice();
 };
 window.toggleBreath = function(){
 var btn = document.getElementById('breathBtn');
@@ -1028,37 +1032,36 @@ var circle = document.getElementById('breathCircle');
 var label = document.getElementById('breathLabel');
 var count = document.getElementById('breathCount');
 if(breathOn){
-breathOn=false;
+breathOn = false;
 clearTimeout(breathTimer); clearInterval(countTimer);
-if('speechSynthesis' in window) speechSynthesis.cancel();
-btn.textContent='Empezar';
-label.textContent='Pulsa empezar'; count.innerHTML='&nbsp;';
-circle.style.transition='transform 1s ease';
-circle.style.transform='scale(.72)';
+stopVoice();
+btn.textContent = 'Empezar';
+label.textContent = 'Pulsa empezar'; count.innerHTML = '&nbsp;';
+circle.style.transition = 'transform 1s ease';
+circle.style.transform = 'scale(.72)';
 return;
 }
-breathOn=true; btn.textContent='Parar';
-speak('Vamos a respirar juntos. Sigue el círculo.');
-var pi=0;
+breathOn = true; btn.textContent = 'Parar';
+var pi = 0;
 function phase(){
 if(!breathOn) return;
 var p = phases[pi];
 label.textContent = p.label;
-speak(p.say);
-circle.style.transition = 'transform '+p.secs+'s cubic-bezier(.4,.1,.3,1)';
-circle.style.transform = 'scale('+(p.label==='Retén'?1:p.scale)+')';
+speakKey(p.key);
+circle.style.transition = 'transform ' + p.secs + 's cubic-bezier(.4,.1,.3,1)';
+circle.style.transform = 'scale(' + (p.label === 'Retén' ? 1 : p.scale) + ')';
 var left = p.secs;
-count.textContent = left+' s';
+count.textContent = left + ' s';
 clearInterval(countTimer);
 countTimer = setInterval(function(){
-left--; if(left<=0){clearInterval(countTimer);} else count.textContent=left+' s';
-},1000);
-breathTimer = setTimeout(function(){ pi=(pi+1)%phases.length; phase(); }, p.secs*1000);
+left--; if(left <= 0){ clearInterval(countTimer); } else count.textContent = left + ' s';
+}, 1000);
+breathTimer = setTimeout(function(){ pi = (pi + 1) % phases.length; phase(); }, p.secs * 1000);
 }
-// preparar: inhala desde pequeño (si hay voz, dejamos terminar la bienvenida)
-var c = document.getElementById('breathCircle');
-c.style.transition='transform .6s ease'; c.style.transform='scale(.72)';
-setTimeout(phase, (voiceOn && 'speechSynthesis' in window) ? 2600 : 300);
+circle.style.transition = 'transform .6s ease'; circle.style.transform = 'scale(.72)';
+label.textContent = 'Escucha…'; count.innerHTML = '&nbsp;';
+if(voiceOn){ speakKey('bienvenida', function(){ if(breathOn) phase(); }); }
+else { setTimeout(phase, 300); }
 };
 window.sendInvite = function(ev){
 ev.preventDefault();
