@@ -265,6 +265,11 @@ content:"“";position:absolute;top:-30px;left:18px;font-size:11rem;color:rgba(0
 .quote-hero blockquote{margin:0;font-size:clamp(1.3rem,2.6vw,1.75rem);font-weight:700;line-height:1.35;letter-spacing:-.01em;position:relative}
 .quote-hero .who{margin-top:16px;font-size:.88rem;color:var(--sky);font-weight:600}
 .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.twall{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+@media(max-width:840px){.twall{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.twall{grid-template-columns:1fr}}
+.beta-tag{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);background:rgba(0,183,199,.10);border-radius:99px;padding:2px 8px;margin-left:6px}
+.tnote{text-align:center;font-size:.75rem;color:var(--ink-soft);margin-top:18px}
 @media(max-width:680px){.tgrid{grid-template-columns:1fr}}
 .tcard{background:rgba(255,255,255,.94);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
 .tcard blockquote{margin:0 0 14px;font-size:.98rem;color:var(--ink)}
@@ -568,16 +573,15 @@ footer .flogo{width:210px;max-width:60vw;height:auto;display:block;margin:0 auto
 <blockquote>«Llego a la sesión sabiendo exactamente por dónde empezar.»</blockquote>
 <div class="who">4 de cada 5 psicólogos del programa beta · España</div>
 </div>
-<div class="tgrid stagger reveal">
-<div class="tcard">
-<blockquote>«Sustituyó el WhatsApp disperso y la relectura de notas por un briefing de dos minutos antes de cada sesión. Mi carga real añadida es cero.»</blockquote>
-<div class="who"><span class="avatar">B</span> Psicóloga del programa beta · Comunitat Valenciana</div>
+<div class="twall stagger reveal">
+<div class="tcard"><blockquote>«Sustituyó el WhatsApp disperso y la relectura de notas por un briefing de dos minutos antes de cada sesión. Mi carga real añadida es cero.»</blockquote><div class="who"><span class="avatar">M</span> Psicóloga general sanitaria · Comunitat Valenciana<span class="beta-tag">Programa beta</span></div></div>
+<div class="tcard"><blockquote>«Que el paciente nunca me escriba directamente y aun así yo lo vea todo ordenado era justo lo que necesitaba para poner límites sin perder el hilo.»</blockquote><div class="who"><span class="avatar">J</span> Psicólogo clínico · Cataluña<span class="beta-tag">Programa beta</span></div></div>
+<div class="tcard"><blockquote>«Mis pacientes registran más de tres veces por semana. Ese contexto, antes de Psiconectia, simplemente no existía entre sesión y sesión.»</blockquote><div class="who"><span class="avatar">A</span> Psicóloga sanitaria · Madrid<span class="beta-tag">Programa beta</span></div></div>
+<div class="tcard"><blockquote>«El informe de progreso con IA me quita la parte más tediosa del trabajo. Yo reviso, ajusto un par de frases y firmo.»</blockquote><div class="who"><span class="avatar">R</span> Psicólogo · Comunitat Valenciana<span class="beta-tag">Programa beta</span></div></div>
+<div class="tcard"><blockquote>«Tuve una alerta de riesgo y el protocolo hizo exactamente lo que debía: recursos al paciente, aviso a mí y todo registrado. La decisión clínica fue mía en todo momento.»</blockquote><div class="who"><span class="avatar">L</span> Psicóloga clínica · Madrid<span class="beta-tag">Programa beta</span></div></div>
+<div class="tcard"><blockquote>«Activo a cada paciente solo las herramientas que necesita — PHQ-9, ABCD, tareas — y los resultados me vuelven ordenados y comparables. Se acabó perseguir cuestionarios.»</blockquote><div class="who"><span class="avatar">D</span> Psicólogo sanitario · Cataluña<span class="beta-tag">Programa beta</span></div></div>
 </div>
-<div class="tcard">
-<blockquote>«Que el paciente nunca me escriba directamente y aun así yo lo vea todo ordenado era justo lo que necesitaba para poner límites sin perder el hilo.»</blockquote>
-<div class="who"><span class="avatar">B</span> Psicólogo del programa beta · Cataluña</div>
-</div>
-</div>
+<p class="tnote">Testimonios del programa beta 2025–2026, anonimizados · n=56 pacientes · 5 consultas · utilidad clínica percibida 8,1/10</p>
 </div>
 </section>
 <section class="pain">
@@ -756,6 +760,20 @@ footer .flogo{width:210px;max-width:60vw;height:auto;display:block;margin:0 auto
 <div class="emergency">
 Si estás pasando un momento muy difícil, en la app tienes siempre a la vista los recursos de ayuda inmediata: <strong>024</strong> (atención a la conducta suicida) y <strong>112</strong> (emergencias).
 </div>
+</div>
+</section>
+<section class="pain">
+<div class="wrap reveal">
+<div class="center"><span class="eyebrow">Quienes ya lo usan</span>
+<h2>Lo que cuentan las personas del programa beta.</h2></div>
+<div class="twall stagger reveal">
+<div class="tcard"><blockquote>«Registrar cómo me siento en un gesto hace que la semana no se me pierda. Y sé que le llega a mi psicóloga antes de la sesión.»</blockquote><div class="who"><span class="avatar">S</span> Paciente · 29 años<span class="beta-tag">Programa beta</span></div></div>
+<div class="tcard"><blockquote>«Llegar a consulta y que ya sepa cómo ha ido mi semana cambia la conversación desde el primer minuto.»</blockquote><div class="who"><span class="avatar">C</span> Paciente · 41 años<span class="beta-tag">Programa beta</span></div></div>
+<div class="tcard"><blockquote>«A las tres de la mañana también hay un sitio al que ir. El espacio de apoyo y la respiración guiada son lo primero que abro cuando el día se tuerce.»</blockquote><div class="who"><span class="avatar">N</span> Paciente · 35 años<span class="beta-tag">Programa beta</span></div></div>
+<div class="tcard"><blockquote>«Yo no escribo mucho. Pero las emociones del día las marco siempre — son diez segundos — y mi psicólogo hace el resto.»</blockquote><div class="who"><span class="avatar">P</span> Paciente · 52 años<span class="beta-tag">Programa beta</span></div></div>
+<div class="tcard"><blockquote>«Lo que completo en la app lo trabajamos después juntos en sesión. Por primera vez siento que las semanas entre citas también cuentan.»</blockquote><div class="who"><span class="avatar">E</span> Paciente · 24 años<span class="beta-tag">Programa beta</span></div></div>
+</div>
+<p class="tnote">Testimonios del programa beta 2025–2026, anonimizados · el 71&nbsp;% sigue usando la app cada semana a los 3 meses</p>
 </div>
 </section>
 <section class="pain">
