@@ -475,7 +475,7 @@ footer .flogo{width:210px;max-width:60vw;height:auto;display:block;margin:0 auto
 <span class="eyebrow">El ecosistema psicólogo ↔ paciente</span>
 <h1>El ecosistema que mantiene el hilo.</h1>
 <p class="lead">Entre una sesión y la siguiente pasan siete días de emociones, avances y recaídas que muchas veces se pierden. Psiconectia une los dos lados de la terapia en un mismo espacio.</p>
-<video class="video-real" controls preload="metadata" playsinline src="assets/videos/v1-ecosistema.mp4"></video>
+<video class="video-real" controls muted loop preload="metadata" playsinline src="assets/videos/v1-ecosistema.mp4"></video>
 <span class="vcap">Psiconectia en 50 segundos</span>
 <div class="gate-zone">
 <svg class="gate-thread" viewBox="0 0 900 240" preserveAspectRatio="none" aria-hidden="true">
@@ -532,7 +532,7 @@ footer .flogo{width:210px;max-width:60vw;height:auto;display:block;margin:0 auto
 <div class="wrap center reveal">
 <span class="eyebrow">La solución · 90 segundos</span>
 <h2>Toda tu consulta en una sola pantalla.</h2>
-<video class="video-real small" controls preload="metadata" playsinline src="assets/videos/v2-saas-psicologo.mp4"></video>
+<video class="video-real small" controls muted loop preload="metadata" playsinline src="assets/videos/v2-saas-psicologo.mp4"></video>
 <span class="vcap">Recorrido por la plataforma del psicólogo</span>
 </div>
 <div class="wrap" style="margin-top:50px">
@@ -696,7 +696,7 @@ footer .flogo{width:210px;max-width:60vw;height:auto;display:block;margin:0 auto
 <span class="eyebrow">Tu espacio entre sesiones</span>
 <h2 style="font-size:clamp(1.9rem,4.4vw,3rem)">Hay una parte de tu proceso que ocurre fuera de la consulta.</h2>
 <p class="lead" style="margin:0 auto">Esta app está pensada para acompañarte justo ahí. Sin promesas raras: te acompaña, registra lo que tú quieras contar y mantiene el hilo con tu psicólogo.</p>
-<video class="video-real small" style="margin-top:34px" controls preload="metadata" playsinline src="assets/videos/v3-app-paciente.mp4"></video>
+<video class="video-real small" style="margin-top:34px" controls muted loop preload="metadata" playsinline src="assets/videos/v3-app-paciente.mp4"></video>
 <span class="vcap">Así es tu espacio entre sesiones</span>
 </div>
 </section>
@@ -1081,6 +1081,17 @@ label.textContent = 'Escucha…'; count.innerHTML = '&nbsp;';
 if(voiceOn){ speakKey('bienvenida', function(){ if(breathOn) phase(); }); }
 else { setTimeout(phase, 300); }
 };
+(function(){
+if(reduced || !('IntersectionObserver' in window)) return;
+var vio = new IntersectionObserver(function(entries){
+entries.forEach(function(e){
+var v = e.target;
+if(e.isIntersecting){ v.play().catch(function(){}); }
+else { v.pause(); }
+});
+},{threshold:.35});
+document.querySelectorAll('video.video-real').forEach(function(v){ vio.observe(v); });
+})();
 window.sendInvite = function(ev){
 ev.preventDefault();
 document.getElementById('sent-ok').style.display='block';
