@@ -455,6 +455,12 @@ cursor:pointer;transition:transform .18s,background .18s;
 .vshell.playing .vplay{display:none}
 .vbar{position:absolute;left:0;right:0;bottom:0;height:7px;background:rgba(255,255,255,.28);z-index:2}
 .vbar i{display:block;height:100%;width:0%;background:var(--teal)}
+.vshell:not(.playing)::after{
+content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+background:linear-gradient(180deg,rgba(14,28,48,0) 52%,rgba(14,28,48,.42) 100%);
+}
+.vshell video{transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.vshell:not(.playing):hover video{transform:scale(1.035)}
 .vtag{
 position:absolute;top:14px;right:14px;z-index:2;background:rgba(14,28,48,.55);color:#fff;
 font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:4px 12px;border-radius:999px;line-height:1.4;
@@ -507,7 +513,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 <h1>El ecosistema que mantiene el hilo.</h1>
 <p class="lead">Entre una sesión y la siguiente pasan siete días de emociones, avances y recaídas que muchas veces se pierden. Psiconectia une los dos lados de la terapia en un mismo espacio.</p>
 <div class="vshell">
-<video id="heroVideo" class="video-real" preload="auto" playsinline src="assets/videos/v1-ecosistema.mp4"></video>
+<video id="heroVideo" class="video-real" preload="auto" playsinline poster="assets/img/poster-v1.jpg" src="assets/videos/v1-ecosistema.mp4"></video>
 <span class="vtag">60 s</span>
 <div class="vplay" role="button" tabindex="0" aria-label="Reproducir vídeo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
 <div class="vbar"><i></i></div>
@@ -570,7 +576,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 <span class="eyebrow">La solución · 90 segundos</span>
 <h2>Toda tu consulta en una sola pantalla.</h2>
 <div class="vshell small">
-<video class="video-real small" preload="auto" playsinline src="assets/videos/v2-saas-psicologo.mp4"></video>
+<video class="video-real small" preload="auto" playsinline poster="assets/img/poster-v2.jpg" src="assets/videos/v2-saas-psicologo.mp4"></video>
 <span class="vtag">60 s</span>
 <div class="vplay" role="button" tabindex="0" aria-label="Reproducir vídeo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
 <div class="vbar"><i></i></div>
@@ -740,7 +746,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 <h2 style="font-size:clamp(1.9rem,4.4vw,3rem)">Hay una parte de tu proceso que ocurre fuera de la consulta.</h2>
 <p class="lead" style="margin:0 auto">Esta app está pensada para acompañarte justo ahí. Sin promesas raras: te acompaña, registra lo que tú quieras contar y mantiene el hilo con tu psicólogo.</p>
 <div class="vshell small" style="margin-top:34px">
-<video class="video-real small" preload="auto" playsinline src="assets/videos/v3-app-paciente.mp4"></video>
+<video class="video-real small" preload="auto" playsinline poster="assets/img/poster-v3.jpg" src="assets/videos/v3-app-paciente.mp4"></video>
 <span class="vtag">60 s</span>
 <div class="vplay" role="button" tabindex="0" aria-label="Reproducir vídeo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
 <div class="vbar"><i></i></div>
