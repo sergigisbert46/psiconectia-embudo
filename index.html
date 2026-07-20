@@ -466,6 +466,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 }
 .lock-note .remain{color:var(--teal-deep);font-variant-numeric:tabular-nums}
 .gated{display:none !important}
+[data-glock]{display:none !important}
 .unlocked-flash{animation:unlockIn .8s cubic-bezier(.2,.7,.3,1)}
 @keyframes unlockIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 .video-real.small{max-width:680px}
@@ -569,14 +570,15 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 <span class="eyebrow">La solución · 90 segundos</span>
 <h2>Toda tu consulta en una sola pantalla.</h2>
 <div class="vshell small">
-<video class="video-real small" preload="metadata" playsinline src="assets/videos/v2-saas-psicologo.mp4"></video>
+<video class="video-real small" preload="auto" playsinline src="assets/videos/v2-saas-psicologo.mp4"></video>
 <span class="vtag">60 s</span>
 <div class="vplay" role="button" tabindex="0" aria-label="Reproducir vídeo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
 <div class="vbar"><i></i></div>
 </div>
 <span class="vcap">Recorrido por la plataforma del psicólogo</span>
+<div class="lock-note" id="lockNotePsy">🔒 El resto se desbloquea al terminar el vídeo</div>
 </div>
-<div class="wrap" style="margin-top:50px">
+<div data-glock="psy" class="wrap" style="margin-top:50px">
 <div class="grid g3 stagger reveal">
 <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#008C9E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.6" fill="#008C9E" stroke="none"/></svg></div><h3>Agenda + Google Calendar + Meet</h3><p>Sesiones presenciales o telemáticas. Se sincronizan solas y la videollamada de Meet se crea automáticamente.</p></div>
 <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#008C9E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M12 6c-2-1.5-4.5-2-8-2v14c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2V4c-3.5 0-6 .5-8 2Z"/><path d="M12 6v14"/></svg></div><h3>Contexto real entre sesiones</h3><p>El diario y los registros de tu paciente llegan a su ficha en tiempo real. Llegas a consulta sabiendo cómo ha ido la semana, no preguntándolo.</p></div>
@@ -587,7 +589,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 </div>
 </div>
 </section>
-<section class="pain">
+<section data-glock="psy" class="pain">
 <div class="wrap reveal">
 <div class="center">
 <span class="eyebrow">Resultados de la beta · n=56 pacientes · 5 consultas</span>
@@ -606,7 +608,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 <p class="evidence center">La evidencia externa apunta en la misma dirección: el seguimiento sistemático entre sesiones se asocia a un −20&nbsp;% de abandono del tratamiento (de Jong, 2021 · meta-análisis de 58 estudios, n=21.699).</p>
 </div>
 </section>
-<section>
+<section data-glock="psy">
 <div class="blob b-lime" style="width:380px;height:380px;bottom:-60px;right:-120px"></div>
 <div class="wrap reveal">
 <div class="center"><span class="eyebrow">Lo que dicen los profesionales de la beta</span></div>
@@ -625,7 +627,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 <p class="tnote">Testimonios del programa beta 2025–2026, anonimizados · n=56 pacientes · 5 consultas · utilidad clínica percibida 8,1/10</p>
 </div>
 </section>
-<section class="pain">
+<section data-glock="psy" class="pain">
 <div class="wrap reveal">
 <div class="center">
 <span class="eyebrow">Cómo empezar</span>
@@ -642,7 +644,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 </div>
 </div>
 </section>
-<section id="planes-psy">
+<section data-glock="psy" id="planes-psy">
 <div class="blob b-teal" style="width:400px;height:400px;top:40px;right:-140px"></div>
 <div class="wrap reveal">
 <div class="center">
@@ -686,7 +688,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 </div>
 </div>
 </section>
-<section class="pain">
+<section data-glock="psy" class="pain">
 <div class="wrap narrow reveal">
 <div class="center"><span class="eyebrow">Preguntas que nos hacen siempre</span>
 <h2>Las objeciones, de frente.</h2></div>
@@ -712,7 +714,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 </details>
 </div>
 </section>
-<section id="final-psy">
+<section data-glock="psy" id="final-psy">
 <div class="wrap reveal">
 <div class="final">
 <canvas id="finalNet" aria-hidden="true"></canvas>
@@ -738,15 +740,16 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 <h2 style="font-size:clamp(1.9rem,4.4vw,3rem)">Hay una parte de tu proceso que ocurre fuera de la consulta.</h2>
 <p class="lead" style="margin:0 auto">Esta app está pensada para acompañarte justo ahí. Sin promesas raras: te acompaña, registra lo que tú quieras contar y mantiene el hilo con tu psicólogo.</p>
 <div class="vshell small" style="margin-top:34px">
-<video class="video-real small" preload="metadata" playsinline src="assets/videos/v3-app-paciente.mp4"></video>
+<video class="video-real small" preload="auto" playsinline src="assets/videos/v3-app-paciente.mp4"></video>
 <span class="vtag">60 s</span>
 <div class="vplay" role="button" tabindex="0" aria-label="Reproducir vídeo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
 <div class="vbar"><i></i></div>
 </div>
 <span class="vcap">Así es tu espacio entre sesiones</span>
+<div class="lock-note" id="lockNotePat">🔒 El resto se desbloquea al terminar el vídeo</div>
 </div>
 </section>
-<section class="pain">
+<section data-glock="pat" class="pain">
 <div class="blob b-lime" style="width:360px;height:360px;top:-40px;left:-120px"></div>
 <div class="wrap center reveal">
 <span class="eyebrow">Cada día, en un gesto</span>
@@ -761,7 +764,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 </div>
 </div>
 </section>
-<section>
+<section data-glock="pat">
 <div class="blob b-teal" style="width:380px;height:380px;top:100px;right:-140px"></div>
 <div class="wrap reveal">
 <div class="center"><span class="eyebrow">Lo que llevas contigo</span>
@@ -776,7 +779,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 </div>
 </div>
 </section>
-<section class="pain">
+<section data-glock="pat" class="pain">
 <div class="wrap center reveal">
 <span class="eyebrow">Pruébalo aquí mismo</span>
 <h2>Un momento de calma, ahora.</h2>
@@ -797,7 +800,7 @@ display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(-
 </div>
 </div>
 </section>
-<section>
+<section data-glock="pat">
 <div class="wrap reveal center">
 <div class="owl-msg">
 <img class="owlimg" src="assets/owl.png" alt="">
@@ -808,7 +811,7 @@ Si estás pasando un momento muy difícil, en la app tienes siempre a la vista l
 </div>
 </div>
 </section>
-<section class="pain">
+<section data-glock="pat" class="pain">
 <div class="wrap reveal">
 <div class="center"><span class="eyebrow">Quienes ya lo usan</span>
 <h2>Lo que cuentan las personas del programa beta.</h2></div>
@@ -822,7 +825,7 @@ Si estás pasando un momento muy difícil, en la app tienes siempre a la vista l
 <p class="tnote">Testimonios del programa beta 2025–2026, anonimizados · el 71&nbsp;% sigue usando la app cada semana a los 3 meses</p>
 </div>
 </section>
-<section class="pain">
+<section data-glock="pat" class="pain">
 <div class="wrap center reveal">
 <span class="eyebrow">Empieza cuando quieras</span>
 <h2>Tu espacio, por 3 € al mes.</h2>
@@ -1156,13 +1159,29 @@ bar.style.width = ((1 - Math.pow(1 - p, 2.2)) * 100) + '%';
 });
 });
 /* ============ PUERTA DE VÍDEO (VSL) ============ */
+function bindGate(sel, name, noteId){
+var v = document.querySelector(sel);
+function open(){
+document.querySelectorAll('[data-glock="' + name + '"]').forEach(function(el){
+el.removeAttribute('data-glock'); el.classList.add('unlocked-flash');
+});
+var nt = document.getElementById(noteId);
+if(nt) nt.style.display = 'none';
+observeReveals();
+}
+if(!v || reduced){ open(); return; }
+v.addEventListener('ended', open);
+v.addEventListener('error', open);
+}
+bindGate('#branch-psy video', 'psy', 'lockNotePsy');
+bindGate('#branch-pat video', 'pat', 'lockNotePat');
+
 var heroV = document.getElementById('heroVideo');
 var lockNote = document.getElementById('lockNote');
 window.__gateOpen = false;
 function openGate(flash){
 if(window.__gateOpen) return;
 window.__gateOpen = true;
-try{ localStorage.setItem('psiconectia_gate_v1','1'); }catch(e){}
 ['gateZone','awardsStrip'].forEach(function(id){
 var el = document.getElementById(id);
 if(!el) return;
@@ -1177,9 +1196,7 @@ if(heroV){
 heroV.addEventListener('ended', function(){ openGate(true); });
 heroV.addEventListener('error', function(){ openGate(false); });
 document.querySelectorAll('.persona-switch button').forEach(function(b){ b.style.opacity='.45'; });
-var yaVisto = false;
-try{ yaVisto = localStorage.getItem('psiconectia_gate_v1') === '1'; }catch(e){}
-if(yaVisto || reduced){ openGate(false); }
+if(reduced){ openGate(false); }
 } else { openGate(false); }
 window.sendInvite = function(ev){
 ev.preventDefault();
