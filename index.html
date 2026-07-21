@@ -985,7 +985,7 @@ n.vx = Math.max(-.14, Math.min(.14, n.vx));
 n.vy = Math.max(-.14, Math.min(.14, n.vy));
 // atracción muy suave al ratón
 var dxm = mouse.x-n.x, dym = mouse.y-n.y, dm = Math.hypot(dxm,dym);
-if(dm < 200 && dm > 40){ n.x += dxm/dm*.08*dt; n.y += dym/dm*.08*dt; }
+if(dm < 160 && dm > 70){ n.x += dxm/dm*.035*dt; n.y += dym/dm*.035*dt; }
 if(n.x<-30)n.x=W+30; if(n.x>W+30)n.x=-30;
 if(n.y<-30)n.y=H+30; if(n.y>H+30)n.y=-30;
 }
@@ -995,6 +995,11 @@ for(var j=i+1;j<N;j++){
 var a=nodes[i], b=nodes[j];
 var dx=a.x-b.x, dy=a.y-b.y;
 var d = Math.hypot(dx,dy);
+// repulsión suave anti-agrupación: si dos nodos se acercan demasiado, se separan
+if(d<34 && d>.1){
+var f=(34-d)/34*.10*dt;
+a.x+=dx/d*f; a.y+=dy/d*f; b.x-=dx/d*f; b.y-=dy/d*f;
+}
 if(d<LINK){
 var alpha = (1-d/LINK)*.30;
 ctx.strokeStyle = 'rgba(0,'+Math.round(160+40*scrollHue)+','+Math.round(199-40*scrollHue)+','+alpha+')';
