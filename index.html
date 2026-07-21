@@ -433,8 +433,10 @@ padding:14px 22px;backdrop-filter:blur(4px);
 .award .at{display:flex;flex-direction:column;line-height:1.3}
 .award .at strong{font-size:.88rem;color:var(--navy);font-weight:800}
 .award .at small{font-size:.72rem;color:var(--ink-soft);font-weight:600;letter-spacing:.04em}
-footer{background:var(--navy);color:rgba(255,255,255,.72);text-align:left;font-size:.85rem;position:relative;z-index:2;margin-top:80px;padding:64px 0 130px}
-.fgrid{display:grid;grid-template-columns:1.3fr .9fr 1.3fr;gap:44px;align-items:start}
+footer{background:var(--navy);color:rgba(255,255,255,.72);text-align:left;font-size:.85rem;position:relative;z-index:2;margin-top:80px;padding:0}
+.fband1{padding:56px 0 46px}
+.fband2{background:#0D1830;box-shadow:inset 0 1px 0 rgba(255,255,255,.07);padding:46px 0 130px}
+.fgrid{display:grid;grid-template-columns:1fr 1.5fr;gap:44px;align-items:start}
 .fbrand{text-align:center}
 .fcol .flogo{width:170px;height:auto;display:block;margin:0 auto 16px}
 .ftag{color:rgba(255,255,255,.65);font-size:.92rem;margin:0 auto 18px;line-height:1.55;max-width:280px}
@@ -880,8 +882,8 @@ Si estás pasando un momento muy difícil, en la app tienes siempre a la vista l
 </section>
 </div>
 <footer>
-<div class="wrap fgrid">
-<div class="fcol fbrand">
+<div class="fband1">
+<div class="wrap fbrand">
 <img class="flogo" src="assets/logo-light.png?v=3" alt="Psiconectia®">
 <p class="ftag">El ecosistema que mantiene el hilo entre sesiones.</p>
 <div class="fbadges">
@@ -890,6 +892,9 @@ Si estás pasando un momento muy difícil, en la app tienes siempre a la vista l
 <span class="fbadge">Verifactu · AEAT</span>
 </div>
 </div>
+</div>
+<div class="fband2">
+<div class="wrap fgrid">
 <div class="fcol">
 <h4>Contacto</h4>
 <nav class="fnav" aria-label="Enlaces del pie">
@@ -909,6 +914,7 @@ Si estás pasando un momento muy difícil, en la app tienes siempre a la vista l
 <div class="wrap fbottom">
 <p>Psiconectia<sup>®</sup> es una marca registrada · © 2026 Psiconectia · Todos los derechos reservados</p>
 <p>Psiconectia no diagnostica, no trata y no toma decisiones clínicas.</p>
+</div>
 </div>
 </footer>
 </main>
