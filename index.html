@@ -433,10 +433,14 @@ padding:14px 22px;backdrop-filter:blur(4px);
 .award .at{display:flex;flex-direction:column;line-height:1.3}
 .award .at strong{font-size:.88rem;color:var(--navy);font-weight:800}
 .award .at small{font-size:.72rem;color:var(--ink-soft);font-weight:600;letter-spacing:.04em}
-footer{background:var(--navy);color:rgba(255,255,255,.72);text-align:left;font-size:.85rem;position:relative;z-index:2;margin-top:80px;padding:0}
-.fband1{padding:56px 0 46px}
-.fband2{background:#0D1830;box-shadow:inset 0 1px 0 rgba(255,255,255,.07);padding:46px 0 52px}
-.fband3{background:#071022;box-shadow:inset 0 1px 0 rgba(255,255,255,.06);padding:24px 0 130px}
+footer{background:none;color:rgba(255,255,255,.72);text-align:left;font-size:.85rem;position:relative;z-index:2;margin-top:80px;padding:0}
+.fband1{padding:46px 0 42px;color:var(--ink-soft)}
+.fband1 .ftag{color:var(--ink-soft)}
+.fband1 .fbadge{border:1px solid rgba(0,140,158,.30);color:var(--teal-deep);background:rgba(255,255,255,.6)}
+.fdark{position:relative;overflow:hidden;background:#0D1830}
+.fdark>canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
+.fband2{position:relative;padding:46px 0 52px}
+.fband3{position:relative;background:rgba(2,8,20,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);padding:24px 0 130px}
 .fgrid{display:grid;grid-template-columns:1fr 1.5fr;gap:26px;align-items:stretch}
 .fpanel{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:26px 30px}
 .fbrand{text-align:center}
@@ -886,15 +890,18 @@ Si estás pasando un momento muy difícil, en la app tienes siempre a la vista l
 <footer>
 <div class="fband1">
 <div class="wrap fbrand">
-<img class="flogo" src="assets/logo-light.png?v=3" alt="Psiconectia®">
+<img class="flogo" src="assets/logo-full.png?v=4" alt="Psiconectia®">
 <p class="ftag">El ecosistema que mantiene el hilo entre sesiones.</p>
 <div class="fbadges">
 <span class="fbadge">RGPD</span>
 <span class="fbadge">No diagnostica</span>
 <span class="fbadge">Verifactu · AEAT</span>
+<span class="fbadge">Autenticación de colegiados</span>
 </div>
 </div>
 </div>
+<div class="fdark">
+<canvas id="footNet" aria-hidden="true"></canvas>
 <div class="fband2">
 <div class="wrap fgrid">
 <div class="fcol fpanel">
@@ -918,6 +925,7 @@ Si estás pasando un momento muy difícil, en la app tienes siempre a la vista l
 <div class="wrap fbottom">
 <p>Psiconectia<sup>®</sup> es una marca registrada · © 2026 Psiconectia · Todos los derechos reservados</p>
 <p>Psiconectia no diagnostica, no trata y no toma decisiones clínicas.</p>
+</div>
 </div>
 </div>
 </footer>
@@ -1074,6 +1082,40 @@ for(var i=0;i<fn.length;i++){fctx.beginPath();fctx.arc(fn[i].x,fn[i].y,1.6,0,Mat
 if(!reduced && running) requestAnimationFrame(floop);
 }
 requestAnimationFrame(floop);
+}
+/* ============ red clarita en el pie ============ */
+var fnet = document.getElementById('footNet');
+if(fnet){
+var nctx = fnet.getContext('2d');
+var nn = [];
+function nres(){
+var r = fnet.parentElement.getBoundingClientRect();
+fnet.width = r.width; fnet.height = r.height;
+if(!nn.length && r.width>50){
+for(var i=0;i<34;i++) nn.push({x:Math.random()*r.width,y:Math.random()*r.height,vx:rnd(-.07,.07),vy:rnd(-.07,.07)});
+}
+}
+nres(); window.addEventListener('resize', nres);
+function nloop(){
+if(fnet.width<10 || !nn.length){ nres(); requestAnimationFrame(nloop); return; }
+nctx.clearRect(0,0,fnet.width,fnet.height);
+for(var i=0;i<nn.length;i++){
+var n=nn[i]; n.x+=n.vx; n.y+=n.vy;
+if(n.x<0||n.x>fnet.width)n.vx*=-1;
+if(n.y<0||n.y>fnet.height)n.vy*=-1;
+}
+for(var i=0;i<nn.length;i++)for(var j=i+1;j<nn.length;j++){
+var a=nn[i],b=nn[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+if(d<140){
+nctx.strokeStyle='rgba(207,250,254,'+((1-d/140)*.16)+')';
+nctx.beginPath();nctx.moveTo(a.x,a.y);nctx.lineTo(b.x,b.y);nctx.stroke();
+}
+}
+nctx.fillStyle='rgba(207,250,254,.4)';
+for(var i=0;i<nn.length;i++){nctx.beginPath();nctx.arc(nn[i].x,nn[i].y,1.5,0,Math.PI*2);nctx.fill();}
+if(!reduced && running) requestAnimationFrame(nloop);
+}
+requestAnimationFrame(nloop);
 }
 /* ============ REVEALS + CONTADORES + GRÁFICA ============ */
 var io = null;
