@@ -441,7 +441,15 @@ footer{background:none;color:rgba(255,255,255,.72);text-align:left;font-size:.85
 .fdark{position:relative;overflow:hidden;background:#0D1830}
 .fdark>canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.9;pointer-events:none}
 .fband2{position:relative;padding:40px 0 130px}
-.fgrid{display:grid;grid-template-columns:1fr 1.5fr;gap:26px;align-items:stretch}
+.fgrid{display:grid;grid-template-columns:1.15fr .85fr .85fr 1.35fr;gap:22px;align-items:stretch}
+@media(max-width:1080px){.fgrid{grid-template-columns:1fr 1fr}}
+.fnav a,.fnav .fitem{display:flex;align-items:center;gap:9px}
+.fnav svg{width:15px;height:15px;flex-shrink:0;stroke:rgba(255,255,255,.55);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fnav .fitem{color:rgba(255,255,255,.85);font-weight:600;font-size:.88rem}
+.fsocial{margin-top:18px}
+.fsocial a{width:36px;height:36px;border:1px solid rgba(255,255,255,.22);border-radius:10px;display:inline-flex;align-items:center;justify-content:center;transition:border-color .2s}
+.fsocial a:hover{border-color:#CFFAFE}
+.fsocial svg{width:17px;height:17px;fill:rgba(255,255,255,.85)}
 .fpanel{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:26px 30px}
 .fbrand{text-align:center}
 .fcol .flogo{width:170px;height:auto;display:block;margin:0 auto 16px}
@@ -935,10 +943,32 @@ Si estás pasando un momento muy difícil, en la app tienes siempre a la vista l
 <div class="wrap fgrid">
 <div class="fcol fpanel">
 <h4>Contacto</h4>
-<nav class="fnav" aria-label="Enlaces del pie">
-<a href="https://psiconectia.com">psiconectia.com</a>
-<a href="mailto:info@psiconectia.com">info@psiconectia.com</a>
+<nav class="fnav" aria-label="Contacto">
+<a href="mailto:info@psiconectia.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>info@psiconectia.com</a>
+<a href="https://psiconectia.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>psiconectia.com</a>
+<span class="fitem"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.1-7-11a7 7 0 0 1 14 0c0 5.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>Benicarló, España</span>
+</nav>
+<div class="fsocial">
+<a href="https://www.linkedin.com/in/sergi-gisbert-psiconectia-saas/" target="_blank" rel="noopener" aria-label="LinkedIn de Psiconectia"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8.25h4.56V23H.22V8.25zM8.34 8.25h4.37v2.01h.06c.61-1.15 2.1-2.37 4.32-2.37 4.62 0 5.47 3.04 5.47 6.99V23h-4.55v-7.21c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.8V23H8.34V8.25z"/></svg></a>
+</div>
+</div>
+<div class="fcol fpanel">
+<h4>Secciones</h4>
+<nav class="fnav" aria-label="Secciones">
+<a href="#branch-psy">Para psicólogos</a>
+<a href="#branch-pat">Para pacientes</a>
+<a href="#planes-psy">Precio</a>
+<a href="#final-psy">Empieza hoy</a>
 <a href="#top">Volver arriba ↑</a>
+</nav>
+</div>
+<div class="fcol fpanel">
+<h4>Legal</h4>
+<nav class="fnav" aria-label="Legal">
+<a href="https://psiconectia-web-staging.vercel.app/politica-privacidad" target="_blank" rel="noopener">Política de privacidad</a>
+<a href="https://psiconectia-web-staging.vercel.app/politica-cookies" target="_blank" rel="noopener">Política de cookies</a>
+<a href="mailto:info@psiconectia.com?subject=Aviso%20legal">Aviso legal</a>
+<a href="mailto:info@psiconectia.com?subject=RGPD%20%C2%B7%20Derechos">Ejercer derechos RGPD</a>
 </nav>
 </div>
 <div class="fcol fpanel">
