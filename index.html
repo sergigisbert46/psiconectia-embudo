@@ -1288,9 +1288,12 @@ bar.style.width = ((1 - Math.pow(1 - p, 2.2)) * 100) + '%';
 });
 });
 /* ============ PUERTA DE VÍDEO (VSL) ============ */
+function gateSeen(k){ try{ return localStorage.getItem('psiconectia_gate_'+k)==='1'; }catch(e){ return false; } }
+function gateSave(k){ try{ localStorage.setItem('psiconectia_gate_'+k,'1'); }catch(e){} }
 function bindGate(sel, name, noteId){
 var v = document.querySelector(sel);
-function open(){
+function open(save){
+if(save) gateSave(name);
 document.querySelectorAll('[data-glock="' + name + '"]').forEach(function(el){
 el.removeAttribute('data-glock'); el.classList.add('unlocked-flash');
 });
@@ -1298,9 +1301,9 @@ var nt = document.getElementById(noteId);
 if(nt) nt.style.display = 'none';
 observeReveals();
 }
-if(!v || reduced){ open(); return; }
-v.addEventListener('ended', open);
-v.addEventListener('error', open);
+if(!v || reduced || gateSeen(name)){ open(false); return; }
+v.addEventListener('ended', function(){ open(true); });
+v.addEventListener('error', function(){ open(false); });
 }
 bindGate('#branch-psy video', 'psy', 'lockNotePsy');
 bindGate('#branch-pat video', 'pat', 'lockNotePat');
@@ -1321,11 +1324,10 @@ if(lockNote) lockNote.style.display = 'none';
 document.querySelectorAll('.persona-switch button').forEach(function(b){ b.style.opacity=''; });
 observeReveals();
 }
-if(heroV){
-heroV.addEventListener('ended', function(){ openGate(true); });
+if(heroV && !reduced && !gateSeen('hero')){
+heroV.addEventListener('ended', function(){ gateSave('hero'); openGate(true); });
 heroV.addEventListener('error', function(){ openGate(false); });
 document.querySelectorAll('.persona-switch button').forEach(function(b){ b.style.opacity='.45'; });
-if(reduced){ openGate(false); }
 } else { openGate(false); }
 window.sendInvite = function(ev){
 ev.preventDefault();
